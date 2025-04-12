@@ -48,10 +48,50 @@
 										<img src="images/logo3.jpg" alt="" />
 									</span>-->
 									<div class="image object ">
-										<img src="images/logo3.jpg" class="active">
-										<img src="images/ipadrent.jpg">
-										<img src="images/newyear.jpg">
+										<img src="images/logo3.jpg" class="active" alt="1">
+										<img src="images/ipadrent.jpg" alt="2">
+										<img src="images/newyear.jpg" alt="3">
+
 									</div>
+									<script>
+										const images = document.querySelectorAll('.image.object img');
+										let current = 0;
+									  
+										// 等所有图片加载完成后再开始播放
+										let loadedCount = 0;
+										images.forEach(img => {
+										  if (img.complete) {
+											loadedCount++;
+										  } else {
+											img.onload = () => {
+											  loadedCount++;
+											  if (loadedCount === images.length) startSlideshow();
+											};
+										  }
+										});
+									  
+										if (loadedCount === images.length) {
+										  startSlideshow();
+										}
+									  
+										function startSlideshow() {
+										  function showSlide(index) {
+											images[current].classList.remove('active');
+											current = (index + images.length) % images.length;
+											images[current].classList.add('active');
+										  }
+									  
+										  function loop() {
+											showSlide(current + 1);
+											setTimeout(() => requestAnimationFrame(loop), 1000);
+										  }
+									  
+										  // 初始延迟后开始播放
+										  setTimeout(() => requestAnimationFrame(loop), 1000);
+										}
+									  </script>
+									  
+									<!--
 									<script>
 										const images = document.querySelectorAll('.image.object img');
 										let current = 0;
@@ -66,7 +106,7 @@
 										}
 										
 										setInterval(() => showSlide(current + 1), 5000);
-									</script>
+									</script>-->
 									
 								</section>
 
