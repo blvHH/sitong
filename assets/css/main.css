@@ -2137,7 +2137,7 @@ button,
     #banner .image img {
       display: none;
 
-      transition: opacity 2s ease-in-out;
+      /*transition: opacity 2s ease-in-out;*/
       /*width: 100%;
       height: auto;*/
       /**/
@@ -2185,10 +2185,13 @@ button,
         height: 25em;
         max-height: 50vh;
         min-height: 18em;
-        width: 80%; } }
+        width: 100%; } }
   @media screen and (orientation: portrait) and (max-width: 480px) {
     #banner .image {
       width: 100%; } }
+    @media screen and (orientation: portrait) and (max-width: 790px) {
+      #banner .image {
+      width: 70%; } }
 
 /* Footer */
 #footer .copyright {
