@@ -2136,8 +2136,7 @@ button,
     width: 50%; }
     #banner .image img {
       display: none;
-      opacity: 0;
-      z-index: 0;
+
       transition: opacity 2s ease-in-out;
       /*width: 100%;
       height: auto;*/
@@ -2153,8 +2152,7 @@ button,
       width: 100%; }
       #banner .image img.active{
         display: block;
-        opacity: 1;
-        z-index: 1;
+
       }
   @media screen and (orientation: portrait) {
     #banner {
@@ -2187,10 +2185,10 @@ button,
         height: 25em;
         max-height: 50vh;
         min-height: 18em;
-        width: 100%; } }
+        width: 80%; } }
   @media screen and (orientation: portrait) and (max-width: 480px) {
     #banner .image {
-      max-height: 35vh; } }
+      width: 100%; } }
 
 /* Footer */
 #footer .copyright {
