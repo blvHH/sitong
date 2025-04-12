@@ -2135,7 +2135,13 @@ button,
     margin: 0 0 2em 4em;
     width: 50%; }
     #banner .image img {
-      height: 100%;
+      display: none;
+      opacity: 0;
+      z-index: 0;
+      transition: opacity 2s ease-in-out;
+      /*width: 100%;
+      height: auto;*/
+      /**/
       -moz-object-fit: cover;
       -webkit-object-fit: cover;
       -ms-object-fit: cover;
@@ -2145,6 +2151,11 @@ button,
       -ms-object-position: center;
       object-position: center;
       width: 100%; }
+      #banner .image img.active{
+        display: block;
+        opacity: 1;
+        z-index: 1;
+      }
   @media screen and (orientation: portrait) {
     #banner {
       -moz-flex-direction: column-reverse;
@@ -2267,3 +2278,17 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
+
+/*
+.carousel img {
+  display: none;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+    
+.carousel img.active {
+  display: block;
+}
+       */
+       
