@@ -92,17 +92,15 @@
 										  setTimeout(() => requestAnimationFrame(loop), 1000);
 										}
 									  </script>-->
-									<script>
+									  <script>
 										const images = document.querySelectorAll('.image.object img');
 										let current = 0;
 									  
-										function showNext() {
+										setInterval(() => {
 										  images[current].classList.remove('active');
 										  current = (current + 1) % images.length;
 										  images[current].classList.add('active');
-										}
-									  
-										setInterval(showNext, 2000); // 每 2 秒切换一次
+										}, 1000);
 									  </script>
 									<!--
 									<script>
