@@ -66,16 +66,23 @@
 				});
 
 	// Sidebar.
+		let addInactiveCount = 0;
 		var $sidebar = $('#sidebar'),
 			$sidebar_inner = $sidebar.children('.inner');
 
 		// Inactive by default on <= large.
 			breakpoints.on('<=large', function() {
-				$sidebar.addClass('inactive');
+				if (addInactiveCount === 0) {
+					$sidebar.addClass('inactive');
+					//console.log("因为默认情况1")
+					addInactiveCount++;
+				  }
+				  console.log(addInactiveCount);
 			});
 
 			breakpoints.on('>large', function() {
 				$sidebar.removeClass('inactive');
+				addInactiveCount = 0; // 重置
 			});
 
 		// Hack: Workaround for Chrome/Android scrollbar position bug.
@@ -122,6 +129,7 @@
 
 					// Hide sidebar.
 						$sidebar.addClass('inactive');
+						//console.log("因为链接点击")
 
 					// Redirect to href.
 						setTimeout(function() {
@@ -153,9 +161,12 @@
 					// >large? Bail.
 						if (breakpoints.active('>large'))
 							return;
-
+						if ($(event.target).closest('#openandscroll').length) {
+							return;
+						  }
 					// Deactivate.
 						$sidebar.addClass('inactive');
+						//console.log("因为主页点击")
 
 				});
 

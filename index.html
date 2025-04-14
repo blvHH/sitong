@@ -41,7 +41,7 @@
 											<p>我们提供最贴心的服务！</p>
 										</header>
 										<ul class="actions">
-											<li><a href="#contact" class="button big">联系我们</a></li>
+											<li><a class="button big" id="openandscroll">联系我们</a></li>
 										</ul>
 									</div>
 									<!--<span class="image object">
@@ -100,7 +100,7 @@
 										  images[current].classList.remove('active');
 										  current = (current + 1) % images.length;
 										  images[current].classList.add('active');
-										}, 1000);
+										}, 3000);
 									  </script>
 									<!--
 									<script>
@@ -353,7 +353,7 @@
 								</section>-->
 
 							<!-- Section -->
-								<section id="contact">
+								<section id="contacting">
 									<header class="major">
 										<h2>联系我们</h2>
 									</header>
@@ -382,6 +382,43 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				document.addEventListener("DOMContentLoaded", () => {
+				const btn = document.getElementById("openandscroll"); // 你的按钮
+				const sidebar = document.getElementById("sidebar");
+				const target = document.getElementById("contacting"); // 滚动目标
+				if (!btn || !sidebar || !target) {
+					console.error("元素找不到！");
+					return;
+				}
 
+				btn.addEventListener("click", function (e) {
+					e.preventDefault(); // 阻止 <a href="#xxx"> 的默认跳转
+					console.log(window.innerWidth)
+					const notMobile = window.innerWidth > 1280 ;
+					if (notMobile) {
+						if(sidebar.classList.contains("inactive")){
+							const sidebarStyle = window.getComputedStyle(sidebar);
+							//console.log(sidebarStyle.marginLeft); // 可能是 "-345.6px"、"0px"
+							sidebar.classList.remove("inactive"); // 展开侧边栏
+							console.log(sidebarStyle.marginLeft); 
+							setTimeout(() => {
+								target.scrollIntoView({ behavior: "smooth", block: "start" });
+							}, 500); // 等 CSS 动画完成
+						}else {
+							target.scrollIntoView({ behavior: "smooth", block: "start" });
+							const sidebarStyle = window.getComputedStyle(sidebar);
+							//console.log(sidebarStyle.marginLeft); // 可能是 "-345.6px"、"0px"
+							//console.log("宽屏跳转成功")
+							}
+					}else{
+						/*document.body.classList.remove("is-preload");*/
+						sidebar.classList.remove("inactive");
+						target.scrollIntoView({ behavior: "smooth", block: "start" });
+					}
+					});
+				});
+			  </script>
+			  
 	</body>
 </html>
